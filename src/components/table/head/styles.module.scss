@@ -1,0 +1,30 @@
+@use 'scss/breakpoints';
+@use 'scss/config';
+@use 'scss/mixins';
+
+.header {
+  border-radius: config.$br_small;
+  background-color: config.$light_shade;
+  box-shadow: config.$shadow;
+  .heading {
+    padding: 1rem 1.5rem;
+    width: max-content;
+    @include mixins.disableSelect();
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      .text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: config.$dark_shade;
+      }
+
+      .icon {
+        color: config.$light_accent;
+        cursor: pointer;
+      }
+    }
+  }
+}
