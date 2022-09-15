@@ -4,6 +4,7 @@ export interface TableConfig {
     name?: string;
     width?: string;
     sort?: Boolean;
+    format?: 'currency' | 'number' | 'date' | 'percent';
   }[];
   actions?: ('Edit' | 'Delete' | 'Add')[];
 }

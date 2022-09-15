@@ -4,6 +4,7 @@ import { FaEdit, FaPlusSquare, FaSort, FaTrash } from 'react-icons/fa';
 import styles from './styles.module.scss';
 import TableHead from './head';
 import { useState } from 'react';
+import { priceFormatter } from 'utils/priceFormatter';
 
 interface props {
   config: TableConfig;
@@ -14,7 +15,7 @@ const Table = ({ config, data }: props) => {
   const [sort, setSort] = useState<'asc' | 'desc' | 'default'>('default');
   const [sortKey, setSortKey] = useState<string>('');
   const [sortedData, setSortedData] = useState(data);
-  const [setEditMode, setSetEditMode] = useState('');
+  const [editMode, setEditMode] = useState('');
 
   const handleSort = (key: string) => {
     setSortKey(key);
@@ -24,7 +25,6 @@ const Table = ({ config, data }: props) => {
         [...data].sort((a, b) => {
           const aIndex = a.data.findIndex((item) => item.key === key);
           const bIndex = b.data.findIndex((item) => item.key === key);
-          console.log('aIndex', aIndex);
           if (a.data[aIndex].value < b.data[bIndex].value) {
             return -1;
           } else return 1;
@@ -36,7 +36,6 @@ const Table = ({ config, data }: props) => {
         [...data].sort((a, b) => {
           const aIndex = a.data.findIndex((item) => item.key === key);
           const bIndex = b.data.findIndex((item) => item.key === key);
-          console.log('aIndex', aIndex);
           if (a.data[aIndex].value < b.data[bIndex].value) {
             return 1;
           } else return -1;
@@ -65,12 +64,54 @@ const Table = ({ config, data }: props) => {
         />
         <tbody className={styles.body}>
           {sortedData.map((item, index) => (
-            <tr key={index} className={styles.row}>
-              {item.data.map((item, index) => (
-                <td className={styles.value} key={item.key}>
-                  {item.value}
-                </td>
-              ))}
+            <tr
+              key={index}
+              className={`${styles.row} ${editMode === item.id && styles.edit}`}
+            >
+              {item.data.map((item, index) => {
+                const key = config.columns.find(
+                  (configItem) => configItem.key === item.key
+                );
+
+                if (!key) return <td key={index}></td>;
+
+                return (
+                  <td className={styles.value} key={item.key}>
+                    <div
+                      className={styles.content}
+                      onClick={
+                        item.link
+                          ? (e) => {
+                              e.stopPropagation();
+                              window.open(item.link, '_blank');
+                            }
+                          : undefined
+                      }
+                    >
+                      {item.image && (
+                        <img
+                          src={item.image}
+                          alt={item.value.toString()}
+                          className={styles.image}
+                        />
+                      )}
+                      <p
+                        className={`${styles.text} ${item.link && styles.link}`}
+                      >
+                        {!key.format
+                          ? item.value
+                          : key.format === 'currency'
+                          ? priceFormatter(+item.value, false)
+                          : key.format === 'percent'
+                          ? `${item.value}%`
+                          : key.format === 'date'
+                          ? new Date(item.value).toLocaleDateString()
+                          : item.value}
+                      </p>
+                    </div>
+                  </td>
+                );
+              })}
               {config.actions && (
                 <td className={styles.value}>
                   <div className={styles.actionsContainer}>
@@ -78,7 +119,10 @@ const Table = ({ config, data }: props) => {
                       <FaPlusSquare className={styles.icon} />
                     )}
                     {config.actions.includes('Edit') && (
-                      <FaEdit className={styles.icon} />
+                      <FaEdit
+                        className={styles.icon}
+                        onClick={() => setEditMode(item.id)}
+                      />
                     )}
                     {config.actions.includes('Delete') && (
                       <FaTrash

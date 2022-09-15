@@ -13,6 +13,7 @@ export const tableConfigData: TableConfig = {
     {
       key: 'total spend',
       name: 'Total Spend (YTD)',
+      format: 'currency',
     },
     {
       key: 'source',
@@ -20,9 +21,11 @@ export const tableConfigData: TableConfig = {
     {
       key: 'total spend last year',
       name: 'Total Spend (Last 12 Months)',
+      format: 'currency',
     },
     {
       key: 'contract value',
+      format: 'currency',
     },
   ],
   actions: ['Add', 'Delete', 'Edit'],
@@ -36,6 +39,7 @@ export const tableData: TableRowData[] = [
         key: 'vendor',
         value: 'Vendor 1',
         link: 'https://www.google.com',
+        // image:'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
       },
       {
         key: 'apps',
