@@ -21,7 +21,12 @@ const TableHead = ({ config, handleSort, sort, sortKey }: props) => {
             key={item.key}
             style={{ width: item.width }}
           >
-            <div className={styles.content}>
+            <div
+              className={styles.content}
+              onClick={() => {
+                (item.sort === undefined || item.sort) && handleSort(item.key);
+              }}
+            >
               <p className={styles.text}>{capitalize(item.name || item.key)}</p>
               {(item.sort === undefined || item.sort) && (
                 <IconContext.Provider
@@ -30,19 +35,20 @@ const TableHead = ({ config, handleSort, sort, sortKey }: props) => {
                   }}
                 >
                   {sort === 'default' ? (
-                    <FaSort onClick={() => handleSort(item.key)} />
+                    <FaSort />
                   ) : sort === 'desc' && sortKey === item.key ? (
-                    <FaSortUp onClick={() => handleSort(item.key)} />
+                    <FaSortUp />
                   ) : sort === 'asc' && sortKey === item.key ? (
-                    <FaSortDown onClick={() => handleSort(item.key)} />
+                    <FaSortDown />
                   ) : (
-                    <FaSort onClick={() => handleSort(item.key)} />
+                    <FaSort />
                   )}
                 </IconContext.Provider>
               )}
             </div>
           </th>
         ))}
+        {config.actions && <th className={styles.action}>Actions </th>}
       </tr>
     </thead>
   );

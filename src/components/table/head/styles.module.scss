@@ -15,6 +15,7 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      cursor: pointer;
       .text {
         font-size: 1.1rem;
         font-weight: 600;
@@ -23,8 +24,14 @@
 
       .icon {
         color: config.$light_accent;
-        cursor: pointer;
       }
     }
+  }
+  .action {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: config.$dark_shade;
+    width: 6rem;
   }
 }

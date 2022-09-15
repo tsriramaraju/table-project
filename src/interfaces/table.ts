@@ -14,3 +14,13 @@ export interface TableData {
   link?: string;
   image?: string;
 }
+
+export interface TableRowData {
+  id: string;
+  data: {
+    key: string;
+    value: string | number;
+    link?: string;
+    image?: string;
+  }[];
+}
