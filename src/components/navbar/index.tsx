@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FiLink, FiSettings } from 'react-icons/fi';
 import { RiHistoryFill, RiHomeLine } from 'react-icons/ri';
 import Logo from '../../assets/svg/logo';
