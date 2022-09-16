@@ -19,6 +19,11 @@ function App() {
         data={tableData}
         leafConfig={leafConfigData}
       />
+
+      <p className={styles.text}>
+        This table is created from scratch using React, Typescript and SCSS.
+        This table can be customized by adjusting config parameters.
+      </p>
     </div>
   );
 }

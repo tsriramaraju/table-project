@@ -24,4 +24,12 @@
       padding-left: 0.5rem;
     }
   }
+
+  .text {
+    width: 100%;
+    text-align: center;
+    color: config.$light_accent;
+    font-size: 1.1rem;
+    padding: 2rem 1rem;
+  }
 }
