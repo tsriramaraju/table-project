@@ -122,6 +122,99 @@ export const tableData: TableRowData[] = [
           },
         ],
       },
+      {
+        id: 'l4',
+        data: [
+          {
+            key: 'app',
+            value: 'App 1',
+          },
+          {
+            key: 'category',
+            value: 'Email Tracking software',
+          },
+          {
+            key: 'licenses',
+            value: '100',
+          },
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
+      {
+        id: 'l5',
+        data: [
+          {
+            key: 'app',
+            value: 'App 2',
+          },
+          {
+            key: 'category',
+            value: 'Payment software',
+          },
+
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
+      {
+        id: 'l6',
+        data: [
+          {
+            key: 'app',
+            value: 'App 9',
+          },
+          {
+            key: 'category',
+            value: 'Video CMS software',
+          },
+
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
+      {
+        id: 'l7',
+        data: [
+          {
+            key: 'app',
+            value: 'App 9',
+          },
+          {
+            key: 'category',
+            value: 'Video CMS software',
+          },
+
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
+      {
+        id: 'l8',
+        data: [
+          {
+            key: 'app',
+            value: 'App 9',
+          },
+          {
+            key: 'category',
+            value: 'Video CMS software',
+          },
+
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
     ],
     data: [
       {

@@ -8,6 +8,7 @@ interface props {
   handleDelete: (id: string) => void;
   rowId: string;
   editMode: string;
+  small?: boolean;
 }
 
 const RowActions = ({
@@ -16,6 +17,7 @@ const RowActions = ({
   setEditMode,
   rowId,
   editMode,
+  small,
 }: props) => {
   return (
     <td className={styles.value}>
@@ -28,7 +30,7 @@ const RowActions = ({
         {actions.includes('Delete') && (
           <FaTrash
             onClick={() => handleDelete(rowId)}
-            className={styles.icon}
+            className={`${styles.icon} ${small && styles.small}`}
           />
         )}
       </div>

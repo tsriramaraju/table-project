@@ -7,9 +7,10 @@ import styles from './styles.module.scss';
 interface props {
   content: TableRowData[];
   config: ColumnConfig;
+  parentRowIndex: number;
 }
 
-const Leaf = ({ config, content }: props) => {
+const Leaf = ({ config, content, parentRowIndex }: props) => {
   const [sort, setSort] = useState<'asc' | 'desc' | 'default'>('default');
   const [sortKey, setSortKey] = useState<string>('');
   const [sortedData, setSortedData] = useState(content);
@@ -55,7 +56,12 @@ const Leaf = ({ config, content }: props) => {
           config={config}
           small
         />
-        <TableBody setData={setSortedData} config={config} data={sortedData} />
+        <TableBody
+          parentRowIndex={parentRowIndex}
+          setData={setSortedData}
+          config={config}
+          data={sortedData}
+        />
       </table>
     </div>
   );

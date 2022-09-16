@@ -10,5 +10,9 @@
   .icon {
     font-size: 1rem;
     color: config.$main_brand;
+
+    &.small {
+      font-size: 0.85rem;
+    }
   }
 }

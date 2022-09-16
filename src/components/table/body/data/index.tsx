@@ -8,13 +8,14 @@ interface props {
   editMode: boolean;
   col: ColData;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  small?: boolean;
 }
 
-const RowContent = ({ item, col, editMode, onChange }: props) => {
+const RowContent = ({ item, col, editMode, onChange, small }: props) => {
   return (
-    <td className={styles.value} key={item.key}>
+    <td className={`${styles.value} ${small && styles.small}`} key={item.key}>
       <div
-        className={styles.content}
+        className={`${styles.content} ${small && styles.small}`}
         onClick={
           item.link
             ? (e) => {
