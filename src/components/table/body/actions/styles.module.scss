@@ -14,6 +14,11 @@
     border: none;
   }
 
+  &.small {
+    padding: 0.76rem 0;
+    border-bottom: 1px solid white;
+  }
+
   .icon {
     font-size: 1.1rem;
     color: config.$main_brand;
@@ -23,10 +28,6 @@
       color: config.$dark_accent;
     }
 
-    &.small {
-      font-size: 0.85rem;
-    }
-
     &.edit {
       font-size: 1.2rem;
       color: white;
@@ -34,6 +35,10 @@
       &:hover {
         transform: scale(1.2);
       }
+    }
+
+    &.small {
+      font-size: 1rem;
     }
   }
 }

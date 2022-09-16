@@ -7,11 +7,10 @@
 
   .row {
     color: config.$dark_shade;
-    border-bottom: 1pt solid black;
-    // &.odd {
-    //   background-color: config.$light_shade;
-    // }
 
+    &.small {
+      background-color: none;
+    }
     &:hover {
       background-color: config.$light_shade;
     }
@@ -27,22 +26,32 @@
   .value {
     padding: 1rem 0;
     border-bottom: 1px solid config.$light_shade;
-
+    &.small {
+      padding: 0.25rem 0;
+      border-bottom: 1px solid white;
+      .content {
+        height: 2rem;
+      }
+      .text {
+        font-size: 0.9rem;
+      }
+    }
     .content {
       display: flex;
     }
   }
+
   .innerRow {
     height: 0rem;
     transition: all 0.2s ease-in-out;
+    background-color: config.$light_shade;
+    vertical-align: top;
     overflow: hidden;
-
+    border-radius: config.$br_small;
+    padding: 0;
     &.expand {
       height: 15rem;
-    }
-
-    .sample {
-      vertical-align: top;
+      padding: 0.5rem;
     }
   }
 }

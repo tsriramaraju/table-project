@@ -24,11 +24,13 @@ const RowActions = ({
       <div
         className={`${styles.actionsContainer} ${
           editMode === rowId && styles.edit
-        }`}
+        } ${small && styles.small}`}
       >
         {actions.includes('Edit') && editMode === rowId ? (
           <FiSave
-            className={`${styles.icon} ${editMode === rowId && styles.edit}`}
+            className={`${styles.icon} ${editMode === rowId && styles.edit} ${
+              small && styles.small
+            }`}
             onClick={(e) => {
               e.stopPropagation();
               setEditMode('');
@@ -36,7 +38,9 @@ const RowActions = ({
           />
         ) : (
           <FiEdit
-            className={`${styles.icon} ${editMode === rowId && styles.edit}`}
+            className={`${styles.icon} ${editMode === rowId && styles.edit} ${
+              small && styles.small
+            }`}
             onClick={(e) => {
               e.stopPropagation();
               setEditMode(rowId);

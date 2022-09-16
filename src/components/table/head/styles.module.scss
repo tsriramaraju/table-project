@@ -8,6 +8,7 @@
 
   &.small {
     box-shadow: none;
+    background-color: config.$light_shade;
   }
 
   .heading {
@@ -17,6 +18,8 @@
     border-right: 1px dashed config.$light_shade;
     &.small {
       padding: 0.5rem 0.75rem;
+
+      border-right: none;
     }
     .content {
       display: flex;
@@ -29,7 +32,7 @@
         font-weight: 600;
         color: config.$text;
         &.small {
-          font-size: 0.9rem;
+          font-size: 1rem;
           font-weight: 500;
         }
       }
@@ -46,9 +49,9 @@
     color: config.$text;
     width: 8rem;
     &.small {
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 500;
-      padding: 0.5rem 0.75rem;
+      padding: 0.75rem;
       width: 4rem;
     }
   }

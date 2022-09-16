@@ -14,17 +14,7 @@ interface props {
 const RowContent = ({ item, col, editMode, onChange, small }: props) => {
   return (
     <td className={`${styles.value} ${small && styles.small}`} key={item.key}>
-      <div
-        className={`${styles.content} ${small && styles.small}`}
-        onClick={
-          item.link
-            ? (e) => {
-                e.stopPropagation();
-                !editMode && window.open(item.link, '_blank');
-              }
-            : undefined
-        }
-      >
+      <div className={`${styles.content} ${small && styles.small}`}>
         {item.image && (
           <img
             src={item.image}
@@ -40,7 +30,17 @@ const RowContent = ({ item, col, editMode, onChange, small }: props) => {
             onChange={onChange}
           />
         ) : (
-          <p className={`${styles.text} ${item.link && styles.link}`}>
+          <p
+            onClick={
+              item.link
+                ? (e) => {
+                    e.stopPropagation();
+                    !editMode && window.open(item.link, '_blank');
+                  }
+                : undefined
+            }
+            className={`${styles.text} ${item.link && styles.link}`}
+          >
             {!col.format
               ? item.value
               : col.format === 'currency'

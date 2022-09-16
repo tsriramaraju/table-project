@@ -34,7 +34,7 @@ const TableBody = ({
           <tr
             key={row.id}
             className={`${styles.row} ${editMode === row.id && styles.edit} ${
-              rowIndex % 2 !== 0 && styles.odd
+              parentRowIndex !== undefined && styles.small
             } `}
             onClick={(e) => {
               e.stopPropagation();
@@ -47,7 +47,14 @@ const TableBody = ({
               );
 
               if (keyIndex === -1)
-                return <td className={styles.value} key={index}></td>;
+                return (
+                  <td
+                    className={`${styles.value} ${
+                      parentRowIndex !== undefined && styles.small
+                    }`}
+                    key={index}
+                  ></td>
+                );
               const item = row.data[keyIndex];
 
               return (
@@ -90,14 +97,14 @@ const TableBody = ({
               />
             )}
           </tr>
-          <tr
-            key={row.id + row.id}
-            className={`${styles.innerRow} ${
-              toggle === row.id && row.leaf && leafConfig && styles.expand
-            }`}
-          >
-            {toggle === row.id && row.leaf && leafConfig && (
-              <td colSpan={config.columns.length + 1} className={styles.sample}>
+          <tr key={row.id + row.id}>
+            {row.leaf && leafConfig && (
+              <td
+                colSpan={config.columns.length + 1}
+                className={`${styles.innerRow} ${
+                  toggle === row.id && row.leaf && leafConfig && styles.expand
+                }`}
+              >
                 <Leaf
                   parentRowIndex={rowIndex}
                   content={row.leaf}
