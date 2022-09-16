@@ -1,3 +1,4 @@
+export type TableActions = 'Edit' | 'Delete';
 export interface TableConfig {
   columns: {
     key: string;
@@ -6,14 +7,7 @@ export interface TableConfig {
     sort?: Boolean;
     format?: 'currency' | 'number' | 'date' | 'percent';
   }[];
-  actions?: ('Edit' | 'Delete' | 'Add')[];
-}
-
-export interface TableData {
-  key: string;
-  value: string;
-  link?: string;
-  image?: string;
+  actions?: TableActions[];
 }
 
 export interface TableRowData {

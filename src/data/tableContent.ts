@@ -1,4 +1,4 @@
-import { TableConfig, TableData, TableRowData } from '../interfaces/table';
+import { TableConfig, TableRowData } from '../interfaces/table';
 
 export const tableConfigData: TableConfig = {
   columns: [
@@ -28,7 +28,7 @@ export const tableConfigData: TableConfig = {
       format: 'currency',
     },
   ],
-  actions: ['Add', 'Delete', 'Edit'],
+  actions: ['Delete', 'Edit'],
 };
 
 export const tableData: TableRowData[] = [

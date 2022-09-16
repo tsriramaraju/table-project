@@ -1,10 +1,8 @@
-import { capitalize } from 'utils/capitalize';
-import { TableConfig, TableData, TableRowData } from '../../interfaces/table';
-import { FaEdit, FaPlusSquare, FaSort, FaTrash } from 'react-icons/fa';
+import { TableConfig, TableRowData } from '../../interfaces/table';
 import styles from './styles.module.scss';
 import TableHead from './head';
 import { useState } from 'react';
-import { priceFormatter } from 'utils/priceFormatter';
+import TableBody from './body';
 
 interface props {
   config: TableConfig;
@@ -15,7 +13,6 @@ const Table = ({ config, data }: props) => {
   const [sort, setSort] = useState<'asc' | 'desc' | 'default'>('default');
   const [sortKey, setSortKey] = useState<string>('');
   const [sortedData, setSortedData] = useState(data);
-  const [editMode, setEditMode] = useState('');
 
   const handleSort = (key: string) => {
     setSortKey(key);
@@ -47,12 +44,6 @@ const Table = ({ config, data }: props) => {
     }
   };
 
-  const handleDelete = (id: string) => {
-    const newData = [...data].filter((item) => item.id !== id);
-
-    setSortedData(newData);
-  };
-
   return (
     <div className={styles.container}>
       <table className={styles.table}>
@@ -62,80 +53,7 @@ const Table = ({ config, data }: props) => {
           handleSort={handleSort}
           config={config}
         />
-        <tbody className={styles.body}>
-          {sortedData.map((item, index) => (
-            <tr
-              key={index}
-              className={`${styles.row} ${editMode === item.id && styles.edit}`}
-            >
-              {item.data.map((item, index) => {
-                const key = config.columns.find(
-                  (configItem) => configItem.key === item.key
-                );
-
-                if (!key) return <td key={index}></td>;
-
-                return (
-                  <td className={styles.value} key={item.key}>
-                    <div
-                      className={styles.content}
-                      onClick={
-                        item.link
-                          ? (e) => {
-                              e.stopPropagation();
-                              window.open(item.link, '_blank');
-                            }
-                          : undefined
-                      }
-                    >
-                      {item.image && (
-                        <img
-                          src={item.image}
-                          alt={item.value.toString()}
-                          className={styles.image}
-                        />
-                      )}
-                      <p
-                        className={`${styles.text} ${item.link && styles.link}`}
-                      >
-                        {!key.format
-                          ? item.value
-                          : key.format === 'currency'
-                          ? priceFormatter(+item.value, false)
-                          : key.format === 'percent'
-                          ? `${item.value}%`
-                          : key.format === 'date'
-                          ? new Date(item.value).toLocaleDateString()
-                          : item.value}
-                      </p>
-                    </div>
-                  </td>
-                );
-              })}
-              {config.actions && (
-                <td className={styles.value}>
-                  <div className={styles.actionsContainer}>
-                    {config.actions.includes('Add') && (
-                      <FaPlusSquare className={styles.icon} />
-                    )}
-                    {config.actions.includes('Edit') && (
-                      <FaEdit
-                        className={styles.icon}
-                        onClick={() => setEditMode(item.id)}
-                      />
-                    )}
-                    {config.actions.includes('Delete') && (
-                      <FaTrash
-                        onClick={() => handleDelete(item.id)}
-                        className={styles.icon}
-                      />
-                    )}
-                  </div>
-                </td>
-              )}
-            </tr>
-          ))}
-        </tbody>
+        <TableBody setData={setSortedData} config={config} data={sortedData} />
       </table>
     </div>
   );

@@ -1,0 +1,14 @@
+@use 'scss/breakpoints';
+@use 'scss/config';
+@use 'scss/mixins';
+
+.actionsContainer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  .icon {
+    font-size: 1rem;
+    color: config.$main_brand;
+  }
+}
