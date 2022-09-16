@@ -7,12 +7,33 @@
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid config.$light_shade;
+
+  &.edit {
+    border: none;
+  }
+
   .icon {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: config.$main_brand;
+    stroke-width: 2px;
+
+    &:hover {
+      color: config.$dark_accent;
+    }
 
     &.small {
       font-size: 0.85rem;
+    }
+
+    &.edit {
+      font-size: 1.2rem;
+      color: white;
+
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 }

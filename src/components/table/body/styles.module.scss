@@ -7,24 +7,31 @@
 
   .row {
     color: config.$dark_shade;
+    border-bottom: 1pt solid black;
+    // &.odd {
+    //   background-color: config.$light_shade;
+    // }
 
-    &.odd {
+    &:hover {
       background-color: config.$light_shade;
     }
 
-    &:hover {
-      transform: scale(1.01);
-    }
-
     &.edit {
-      background-color: config.$dark_shade;
+      background-color: config.$main_brand;
 
       &:hover {
         transform: none;
       }
     }
   }
+  .value {
+    padding: 1rem 0;
+    border-bottom: 1px solid config.$light_shade;
 
+    .content {
+      display: flex;
+    }
+  }
   .innerRow {
     height: 0rem;
     transition: all 0.2s ease-in-out;

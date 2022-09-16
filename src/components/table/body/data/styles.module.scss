@@ -3,7 +3,8 @@
 @use 'scss/mixins';
 
 .value {
-  padding: 0.5rem 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid config.$light_shade;
 
   .content {
     display: flex;
@@ -11,6 +12,13 @@
     align-items: center;
     gap: 0.5rem;
     color: config.$dark_shade;
+
+    .input {
+      border-radius: config.$br_small;
+      padding: 0.5rem;
+      color: config.$text;
+      width: 70%;
+    }
 
     .image {
       width: 3rem;
