@@ -1,4 +1,3 @@
-import React from 'react';
 import Table from './components/table';
 import {
   leafConfigData,
@@ -12,6 +11,14 @@ function App() {
       <h1 className={styles.heading}>
         Welcome back
         <span className={styles.span}>Amanda</span>
+        <div
+          className={styles.button}
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          Reset
+        </div>
       </h1>
 
       <Table
@@ -22,7 +29,8 @@ function App() {
 
       <p className={styles.text}>
         This table is created from scratch using React, Typescript and SCSS.
-        This table can be customized by adjusting config parameters.
+        This table can be customized by adjusting config parameters. Any changes
+        to the table data is not persisted in DB nor local storage.
       </p>
     </div>
   );

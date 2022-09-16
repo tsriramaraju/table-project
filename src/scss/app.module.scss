@@ -16,12 +16,29 @@
     color: config.$light_accent;
     font-size: 1.5rem;
     font-weight: 500;
+    display: flex;
+    align-items: center;
 
     .span {
       color: config.$dark_shade;
       // font-size: 1.65rem;
       // font-weight: 600;
       padding-left: 0.5rem;
+    }
+
+    .button {
+      margin-left: 2rem;
+      background-color: config.$dark_accent;
+      font-size: 1rem;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: config.$br_small;
+      box-shadow: config.$shadow-subtle;
+      cursor: pointer;
+      @include mixins.disableSelect();
+      &:active {
+        transform: scale(0.95);
+      }
     }
   }
 
