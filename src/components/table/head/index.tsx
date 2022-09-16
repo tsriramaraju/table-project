@@ -14,8 +14,8 @@ interface props {
 
 const TableHead = ({ config, handleSort, sort, sortKey, small }: props) => {
   return (
-    <thead className={`${styles.header} ${small && styles.small}`}>
-      <tr>
+    <thead>
+      <tr className={`${styles.header} ${small && styles.small}`}>
         {config.columns.map((item, index) => (
           <th
             className={`${styles.heading} ${small && styles.small}`}

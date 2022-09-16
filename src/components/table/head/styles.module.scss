@@ -3,8 +3,7 @@
 @use 'scss/mixins';
 
 .header {
-  border-radius: config.$br_small;
-  background-color: config.$light_shade;
+  background-color: white;
   box-shadow: config.$shadow;
 
   &.small {
@@ -12,9 +11,10 @@
   }
 
   .heading {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
     width: max-content;
     @include mixins.disableSelect();
+    border-right: 1px dashed config.$light_shade;
     &.small {
       padding: 0.5rem 0.75rem;
     }
@@ -25,9 +25,9 @@
       gap: 0.5rem;
       cursor: pointer;
       .text {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         font-weight: 600;
-        color: config.$dark_shade;
+        color: config.$text;
         &.small {
           font-size: 0.9rem;
           font-weight: 500;
@@ -35,16 +35,16 @@
       }
 
       .icon {
-        color: config.$light_accent;
+        color: config.$color-1;
       }
     }
   }
   .action {
-    padding: 1rem 1.5rem;
-    font-size: 1.1rem;
+    padding: 1.5rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    color: config.$dark_shade;
-    width: 6rem;
+    color: config.$text;
+    width: 8rem;
     &.small {
       font-size: 0.9rem;
       font-weight: 500;
