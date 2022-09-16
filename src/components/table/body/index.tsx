@@ -25,12 +25,12 @@ const TableBody = ({ config, data, setData }: props) => {
           key={row.id}
           className={`${styles.row} ${editMode === row.id && styles.edit}`}
         >
-          {row.data.map((item, index) => {
-            const key = config.columns.find(
-              (configItem) => configItem.key === item.key
-            );
+          {config.columns.map((col, index) => {
+            const keyIndex = row.data.findIndex((item) => item.key === col.key);
 
-            if (!key) return <td key={index}></td>;
+            if (keyIndex === -1)
+              return <td className={styles.value} key={index}></td>;
+            const item = row.data[keyIndex];
 
             return (
               <td className={styles.value} key={item.key}>
@@ -60,7 +60,7 @@ const TableBody = ({ config, data, setData }: props) => {
                       value={item.value}
                       onChange={(e) => {
                         const newData = [...data];
-                        newData[rowIndex].data[index].value = key.format
+                        newData[rowIndex].data[index].value = col.format
                           ? +e.target.value
                           : e.target.value;
                         setData(newData);
@@ -68,13 +68,13 @@ const TableBody = ({ config, data, setData }: props) => {
                     />
                   ) : (
                     <p className={`${styles.text} ${item.link && styles.link}`}>
-                      {!key.format
+                      {!col.format
                         ? item.value
-                        : key.format === 'currency'
+                        : col.format === 'currency'
                         ? priceFormatter(+item.value, false)
-                        : key.format === 'percent'
+                        : col.format === 'percent'
                         ? `${item.value}%`
-                        : key.format === 'date'
+                        : col.format === 'date'
                         ? new Date(item.value).toLocaleDateString()
                         : item.value}
                     </p>

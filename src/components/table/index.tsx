@@ -22,6 +22,7 @@ const Table = ({ config, data }: props) => {
         [...data].sort((a, b) => {
           const aIndex = a.data.findIndex((item) => item.key === key);
           const bIndex = b.data.findIndex((item) => item.key === key);
+          if (aIndex === -1 || bIndex === -1) return 0;
           if (a.data[aIndex].value < b.data[bIndex].value) {
             return -1;
           } else return 1;
@@ -33,6 +34,7 @@ const Table = ({ config, data }: props) => {
         [...data].sort((a, b) => {
           const aIndex = a.data.findIndex((item) => item.key === key);
           const bIndex = b.data.findIndex((item) => item.key === key);
+          if (aIndex === -1 || bIndex === -1) return 0;
           if (a.data[aIndex].value < b.data[bIndex].value) {
             return 1;
           } else return -1;
