@@ -1,12 +1,14 @@
 export type TableActions = 'Edit' | 'Delete';
+
+export interface ColData {
+  key: string;
+  name?: string;
+  width?: string;
+  sort?: Boolean;
+  format?: 'currency' | 'number' | 'date' | 'percent';
+}
 export interface ColumnConfig {
-  columns: {
-    key: string;
-    name?: string;
-    width?: string;
-    sort?: Boolean;
-    format?: 'currency' | 'number' | 'date' | 'percent';
-  }[];
+  columns: ColData[];
   actions?: TableActions[];
 }
 

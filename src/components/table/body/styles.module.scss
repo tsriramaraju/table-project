@@ -4,9 +4,11 @@
 
 .body {
   cursor: pointer;
+
   .row {
     color: config.$dark_shade;
-    &:nth-child(even) {
+
+    &.odd {
       background-color: config.$light_shade;
     }
 
@@ -20,34 +22,19 @@
       &:hover {
         transform: none;
       }
-      .value {
-        .content {
-          color: config.$light_shade;
-        }
-      }
+    }
+  }
+
+  .innerRow {
+    height: 0rem;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+
+    &.expand {
+      height: 15rem;
     }
 
-    .value {
-      padding: 0.5rem 0;
-
-      .content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        color: config.$dark_shade;
-
-        .image {
-          width: 3rem;
-          height: 3rem;
-          border-radius: config.$br_small;
-          object-fit: contain;
-        }
-        .text {
-          font-size: 1rem;
-          font-weight: 400;
-        }
-      }
+    .sample {
     }
   }
 }

@@ -1,26 +1,25 @@
-import { ColumnConfig, TableRowData } from '../../interfaces/table';
-import styles from './styles.module.scss';
-import TableHead from './head';
+import TableHead from 'components/table/head';
+import { ColumnConfig, TableRowData } from 'interfaces/table';
 import { useState } from 'react';
-import TableBody from './body';
+import TableBody from '..';
+import styles from './styles.module.scss';
 
 interface props {
+  content: TableRowData[];
   config: ColumnConfig;
-  data: TableRowData[];
-  leafConfig?: ColumnConfig;
 }
 
-const Table = ({ config, data, leafConfig }: props) => {
+const Leaf = ({ config, content }: props) => {
   const [sort, setSort] = useState<'asc' | 'desc' | 'default'>('default');
   const [sortKey, setSortKey] = useState<string>('');
-  const [sortedData, setSortedData] = useState(data);
+  const [sortedData, setSortedData] = useState(content);
 
   const handleSort = (key: string) => {
     setSortKey(key);
     if (sort === 'default') {
       setSort('desc');
       setSortedData(
-        [...data].sort((a, b) => {
+        [...content].sort((a, b) => {
           const aIndex = a.data.findIndex((item) => item.key === key);
           const bIndex = b.data.findIndex((item) => item.key === key);
           if (aIndex === -1 || bIndex === -1) return 0;
@@ -32,7 +31,7 @@ const Table = ({ config, data, leafConfig }: props) => {
     } else if (sort === 'desc') {
       setSort('asc');
       setSortedData(
-        [...data].sort((a, b) => {
+        [...content].sort((a, b) => {
           const aIndex = a.data.findIndex((item) => item.key === key);
           const bIndex = b.data.findIndex((item) => item.key === key);
           if (aIndex === -1 || bIndex === -1) return 0;
@@ -43,10 +42,9 @@ const Table = ({ config, data, leafConfig }: props) => {
       );
     } else {
       setSort('default');
-      setSortedData(data);
+      setSortedData(content);
     }
   };
-
   return (
     <div className={styles.container}>
       <table className={styles.table}>
@@ -55,16 +53,12 @@ const Table = ({ config, data, leafConfig }: props) => {
           sort={sort}
           handleSort={handleSort}
           config={config}
+          small
         />
-        <TableBody
-          leafConfig={leafConfig}
-          setData={setSortedData}
-          config={config}
-          data={sortedData}
-        />
+        <TableBody setData={setSortedData} config={config} data={sortedData} />
       </table>
     </div>
   );
 };
 
-export default Table;
+export default Leaf;

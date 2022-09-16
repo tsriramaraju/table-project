@@ -1,18 +1,21 @@
+import { leafConfigData } from 'data/tableContent';
 import { ColumnConfig, TableRowData } from 'interfaces/table';
 import { useState } from 'react';
-import { priceFormatter } from 'utils/priceFormatter';
 import RowActions from './actions';
+import RowContent from './data';
+import Leaf from './leaf';
 import styles from './styles.module.scss';
 
 interface props {
   config: ColumnConfig;
   data: TableRowData[];
-
+  leafConfig?: ColumnConfig;
   setData: (data: TableRowData[]) => void;
 }
 
-const TableBody = ({ config, data, setData }: props) => {
+const TableBody = ({ config, data, setData, leafConfig }: props) => {
   const [editMode, setEditMode] = useState('');
+  const [toggle, setToggle] = useState('');
   const handleDelete = (id: string) => {
     const newData = [...data].filter((item) => item.id !== id);
 
@@ -21,78 +24,65 @@ const TableBody = ({ config, data, setData }: props) => {
   return (
     <tbody className={styles.body}>
       {data.map((row, rowIndex) => (
-        <tr
-          key={row.id}
-          className={`${styles.row} ${editMode === row.id && styles.edit}`}
-        >
-          {config.columns.map((col, index) => {
-            const keyIndex = row.data.findIndex((item) => item.key === col.key);
+        <>
+          <tr
+            key={row.id}
+            className={`${styles.row} ${editMode === row.id && styles.edit} ${
+              rowIndex % 2 !== 0 && styles.odd
+            } `}
+            onClick={(e) => {
+              e.stopPropagation();
+              setToggle(toggle === row.id ? '' : row.id);
+            }}
+          >
+            {config.columns.map((col, index) => {
+              const keyIndex = row.data.findIndex(
+                (item) => item.key === col.key
+              );
 
-            if (keyIndex === -1)
-              return <td className={styles.value} key={index}></td>;
-            const item = row.data[keyIndex];
+              if (keyIndex === -1)
+                return <td className={styles.value} key={index}></td>;
+              const item = row.data[keyIndex];
 
-            return (
-              <td className={styles.value} key={item.key}>
-                <div
-                  className={styles.content}
-                  onClick={
-                    item.link
-                      ? (e) => {
-                          e.stopPropagation();
-                          editMode !== row.id &&
-                            window.open(item.link, '_blank');
-                        }
-                      : undefined
-                  }
-                >
-                  {item.image && (
-                    <img
-                      src={item.image}
-                      alt={item.value.toString()}
-                      className={styles.image}
-                    />
-                  )}
-                  {editMode === row.id ? (
-                    <input
-                      type="text"
-                      className={styles.input}
-                      value={item.value}
-                      onChange={(e) => {
-                        const newData = [...data];
-                        newData[rowIndex].data[index].value = col.format
-                          ? +e.target.value
-                          : e.target.value;
-                        setData(newData);
-                      }}
-                    />
-                  ) : (
-                    <p className={`${styles.text} ${item.link && styles.link}`}>
-                      {!col.format
-                        ? item.value
-                        : col.format === 'currency'
-                        ? priceFormatter(+item.value, false)
-                        : col.format === 'percent'
-                        ? `${item.value}%`
-                        : col.format === 'date'
-                        ? new Date(item.value).toLocaleDateString()
-                        : item.value}
-                    </p>
-                  )}
-                </div>
+              return (
+                <RowContent
+                  key={index}
+                  item={item}
+                  col={col}
+                  editMode={editMode === row.id}
+                  onChange={(e) => {
+                    const newData = [...data];
+                    newData[rowIndex].data[index].value = col.format
+                      ? +e.target.value
+                      : e.target.value;
+                    setData(newData);
+                  }}
+                />
+              );
+            })}
+            {config.actions && (
+              <RowActions
+                actions={config.actions}
+                handleDelete={handleDelete}
+                setEditMode={setEditMode}
+                rowId={row.id}
+                editMode={editMode}
+              />
+            )}
+          </tr>
+          <tr
+            key={row.id + row.id}
+            className={`${styles.innerRow} ${
+              toggle === row.id && row.leaf && leafConfig && styles.expand
+            }`}
+          >
+            {toggle === row.id && row.leaf && leafConfig && (
+              <td colSpan={config.columns.length + 1} className={styles.sample}>
+                <Leaf content={row.leaf} config={leafConfig} />
               </td>
-            );
-          })}
-          {config.actions && (
-            <RowActions
-              actions={config.actions}
-              handleDelete={handleDelete}
-              setEditMode={setEditMode}
-              rowId={row.id}
-              editMode={editMode}
-            />
-          )}
-        </tr>
+            )}
+          </tr>
+        </>
       ))}
     </tbody>
   );

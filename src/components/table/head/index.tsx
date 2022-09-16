@@ -9,25 +9,28 @@ interface props {
   handleSort: (key: string) => void;
   sort: 'asc' | 'desc' | 'default';
   sortKey: string;
+  small?: boolean;
 }
 
-const TableHead = ({ config, handleSort, sort, sortKey }: props) => {
+const TableHead = ({ config, handleSort, sort, sortKey, small }: props) => {
   return (
-    <thead className={styles.header}>
+    <thead className={`${styles.header} ${small && styles.small}`}>
       <tr>
         {config.columns.map((item, index) => (
           <th
-            className={styles.heading}
+            className={`${styles.heading} ${small && styles.small}`}
             key={item.key}
             style={{ width: item.width }}
           >
             <div
-              className={styles.content}
+              className={`${styles.content} ${small && styles.small}`}
               onClick={() => {
                 (item.sort === undefined || item.sort) && handleSort(item.key);
               }}
             >
-              <p className={styles.text}>{capitalize(item.name || item.key)}</p>
+              <p className={`${styles.text} ${small && styles.small}`}>
+                {capitalize(item.name || item.key)}
+              </p>
               {(item.sort === undefined || item.sort) && (
                 <IconContext.Provider
                   value={{
@@ -48,7 +51,11 @@ const TableHead = ({ config, handleSort, sort, sortKey }: props) => {
             </div>
           </th>
         ))}
-        {config.actions && <th className={styles.action}>Actions </th>}
+        {config.actions && (
+          <th className={`${styles.action} ${small && styles.small}`}>
+            Actions{' '}
+          </th>
+        )}
       </tr>
     </thead>
   );

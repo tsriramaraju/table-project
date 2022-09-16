@@ -6,10 +6,18 @@
   border-radius: config.$br_small;
   background-color: config.$light_shade;
   box-shadow: config.$shadow;
+
+  &.small {
+    box-shadow: none;
+  }
+
   .heading {
     padding: 1rem 1.5rem;
     width: max-content;
     @include mixins.disableSelect();
+    &.small {
+      padding: 0.5rem 0.75rem;
+    }
     .content {
       display: flex;
       align-items: center;
@@ -20,6 +28,10 @@
         font-size: 1.1rem;
         font-weight: 600;
         color: config.$dark_shade;
+        &.small {
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
       }
 
       .icon {
@@ -33,5 +45,11 @@
     font-weight: 600;
     color: config.$dark_shade;
     width: 6rem;
+    &.small {
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      width: 4rem;
+    }
   }
 }

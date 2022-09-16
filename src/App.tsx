@@ -1,6 +1,10 @@
 import React from 'react';
 import Table from './components/table';
-import { tableConfigData, tableData } from './data/tableContent';
+import {
+  leafConfigData,
+  tableConfigData,
+  tableData,
+} from './data/tableContent';
 import styles from './scss/app.module.scss';
 function App() {
   return (
@@ -10,7 +14,11 @@ function App() {
         <span className={styles.span}>Amanda</span>
       </h1>
 
-      <Table config={tableConfigData} data={tableData} />
+      <Table
+        config={tableConfigData}
+        data={tableData}
+        leafConfig={leafConfigData}
+      />
     </div>
   );
 }
