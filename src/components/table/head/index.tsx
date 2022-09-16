@@ -1,11 +1,11 @@
-import { TableConfig } from 'interfaces/table';
+import { ColumnConfig } from 'interfaces/table';
 import { IconContext } from 'react-icons/lib';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
 import { capitalize } from 'utils/capitalize';
 import styles from './styles.module.scss';
 
 interface props {
-  config: TableConfig;
+  config: ColumnConfig;
   handleSort: (key: string) => void;
   sort: 'asc' | 'desc' | 'default';
   sortKey: string;

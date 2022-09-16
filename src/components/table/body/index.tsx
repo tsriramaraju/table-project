@@ -1,11 +1,11 @@
-import { TableConfig, TableRowData } from 'interfaces/table';
+import { ColumnConfig, TableRowData } from 'interfaces/table';
 import { useState } from 'react';
 import { priceFormatter } from 'utils/priceFormatter';
 import RowActions from './actions';
 import styles from './styles.module.scss';
 
 interface props {
-  config: TableConfig;
+  config: ColumnConfig;
   data: TableRowData[];
 
   setData: (data: TableRowData[]) => void;

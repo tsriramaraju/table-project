@@ -1,15 +1,16 @@
-import { TableConfig, TableRowData } from '../../interfaces/table';
+import { ColumnConfig, TableRowData } from '../../interfaces/table';
 import styles from './styles.module.scss';
 import TableHead from './head';
 import { useState } from 'react';
 import TableBody from './body';
 
 interface props {
-  config: TableConfig;
+  config: ColumnConfig;
   data: TableRowData[];
+  leafConfig?: ColumnConfig;
 }
 
-const Table = ({ config, data }: props) => {
+const Table = ({ config, data, leafConfig }: props) => {
   const [sort, setSort] = useState<'asc' | 'desc' | 'default'>('default');
   const [sortKey, setSortKey] = useState<string>('');
   const [sortedData, setSortedData] = useState(data);

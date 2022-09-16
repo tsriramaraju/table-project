@@ -1,5 +1,5 @@
 export type TableActions = 'Edit' | 'Delete';
-export interface TableConfig {
+export interface ColumnConfig {
   columns: {
     key: string;
     name?: string;
@@ -10,12 +10,18 @@ export interface TableConfig {
   actions?: TableActions[];
 }
 
+export interface RowData {
+  key: string;
+  value: string | number;
+  link?: string;
+  image?: string;
+}
+
 export interface TableRowData {
   id: string;
-  data: {
-    key: string;
-    value: string | number;
-    link?: string;
-    image?: string;
+  data: RowData[];
+  leaf?: {
+    id: string;
+    data: RowData[];
   }[];
 }

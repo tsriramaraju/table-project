@@ -1,6 +1,6 @@
-import { TableConfig, TableRowData } from '../interfaces/table';
+import { ColumnConfig, TableRowData } from '../interfaces/table';
 
-export const tableConfigData: TableConfig = {
+export const tableConfigData: ColumnConfig = {
   columns: [
     {
       key: 'vendor',
@@ -31,9 +31,98 @@ export const tableConfigData: TableConfig = {
   actions: ['Delete', 'Edit'],
 };
 
+export const leafConfigData: ColumnConfig = {
+  actions: ['Delete', 'Edit'],
+  columns: [
+    {
+      key: 'app',
+      name: 'App Name',
+    },
+
+    {
+      key: 'category',
+    },
+    {
+      key: 'licenses',
+      name: 'Licenses bought',
+      format: 'number',
+    },
+    {
+      key: 'contract',
+      name: 'App covered in contract',
+    },
+    {
+      key: 'Billing frequency',
+    },
+    {
+      key: 'terms',
+      name: 'Payment Terms',
+    },
+  ],
+};
+
 export const tableData: TableRowData[] = [
   {
     id: '1',
+    leaf: [
+      {
+        id: 'l1',
+        data: [
+          {
+            key: 'app',
+            value: 'App 1',
+          },
+          {
+            key: 'category',
+            value: 'Email Tracking software',
+          },
+          {
+            key: 'licenses',
+            value: '100',
+          },
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
+      {
+        id: 'l2',
+        data: [
+          {
+            key: 'app',
+            value: 'App 2',
+          },
+          {
+            key: 'category',
+            value: 'Payment software',
+          },
+
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
+      {
+        id: 'l3',
+        data: [
+          {
+            key: 'app',
+            value: 'App 5',
+          },
+          {
+            key: 'category',
+            value: 'Video CMS software',
+          },
+
+          {
+            key: 'contract',
+            value: 'Yes',
+          },
+        ],
+      },
+    ],
     data: [
       {
         key: 'vendor',
