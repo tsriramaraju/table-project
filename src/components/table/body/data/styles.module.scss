@@ -12,6 +12,9 @@
     align-items: center;
     gap: 0.5rem;
     color: config.$dark_shade;
+    &.toggle {
+      color: white;
+    }
 
     .input {
       border-radius: config.$br_small;
@@ -34,6 +37,7 @@
       &.link {
         color: config.$main_brand;
         font-weight: 500;
+        cursor: pointer;
       }
     }
   }
@@ -41,7 +45,7 @@
     padding: 0.25rem 0;
     border-bottom: 1px solid white;
     .content {
-      height: 2rem;
+      height: 3rem;
     }
     .text {
       font-size: 0.9rem;

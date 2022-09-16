@@ -15,7 +15,7 @@
   }
 
   &.small {
-    padding: 0.76rem 0;
+    padding: 1.25rem 0;
     border-bottom: 1px solid white;
   }
 
@@ -23,7 +23,7 @@
     font-size: 1.1rem;
     color: config.$main_brand;
     stroke-width: 2px;
-
+    cursor: pointer;
     &:hover {
       color: config.$dark_accent;
     }

@@ -3,11 +3,12 @@
 @use 'scss/mixins';
 
 .body {
-  cursor: pointer;
-
   .row {
     color: config.$dark_shade;
 
+    &.cursor {
+      cursor: pointer;
+    }
     &.small {
       background-color: none;
     }
@@ -15,12 +16,12 @@
       background-color: config.$light_shade;
     }
 
+    &.toggle {
+      background-color: config.$dark_shade;
+    }
+
     &.edit {
       background-color: config.$main_brand;
-
-      &:hover {
-        transform: none;
-      }
     }
   }
   .value {

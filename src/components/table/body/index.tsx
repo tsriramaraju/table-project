@@ -33,12 +33,14 @@ const TableBody = ({
         <>
           <tr
             key={row.id}
-            className={`${styles.row} ${editMode === row.id && styles.edit} ${
-              parentRowIndex !== undefined && styles.small
-            } `}
+            className={`${styles.row} ${row.leaf && styles.cursor} ${
+              editMode === row.id && styles.edit
+            } ${parentRowIndex !== undefined && styles.small}  ${
+              toggle === row.id && parentRowIndex === undefined && styles.toggle
+            }`}
             onClick={(e) => {
               e.stopPropagation();
-              setToggle(toggle === row.id ? '' : row.id);
+              row.leaf && setToggle(toggle === row.id ? '' : row.id);
             }}
           >
             {config.columns.map((col, index) => {
@@ -61,6 +63,7 @@ const TableBody = ({
                 <RowContent
                   key={index}
                   item={item}
+                  toggle={toggle === row.id && parentRowIndex === undefined}
                   small={parentRowIndex !== undefined}
                   col={col}
                   editMode={editMode === row.id}
@@ -94,6 +97,8 @@ const TableBody = ({
                 rowId={row.id}
                 small={parentRowIndex !== undefined}
                 editMode={editMode}
+                leaf={row.leaf !== undefined}
+                toggled={toggle === row.id && parentRowIndex === undefined}
               />
             )}
           </tr>

@@ -9,12 +9,24 @@ interface props {
   col: ColData;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   small?: boolean;
+  toggle: boolean;
 }
 
-const RowContent = ({ item, col, editMode, onChange, small }: props) => {
+const RowContent = ({
+  item,
+  col,
+  editMode,
+  onChange,
+  small,
+  toggle,
+}: props) => {
   return (
     <td className={`${styles.value} ${small && styles.small}`} key={item.key}>
-      <div className={`${styles.content} ${small && styles.small}`}>
+      <div
+        className={`${styles.content} ${small && styles.small} ${
+          toggle && styles.toggle
+        }`}
+      >
         {item.image && (
           <img
             src={item.image}

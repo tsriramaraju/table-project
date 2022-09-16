@@ -1,5 +1,11 @@
 import { TableActions } from 'interfaces/table';
-import { FiEdit, FiSave, FiTrash2 } from 'react-icons/fi';
+import {
+  FiChevronDown,
+  FiChevronUp,
+  FiEdit,
+  FiSave,
+  FiTrash2,
+} from 'react-icons/fi';
 import styles from './styles.module.scss';
 
 interface props {
@@ -9,6 +15,8 @@ interface props {
   rowId: string;
   editMode: string;
   small?: boolean;
+  leaf: boolean;
+  toggled: boolean;
 }
 
 const RowActions = ({
@@ -18,6 +26,8 @@ const RowActions = ({
   rowId,
   editMode,
   small,
+  leaf,
+  toggled,
 }: props) => {
   return (
     <td className={styles.value}>
@@ -55,6 +65,21 @@ const RowActions = ({
             }`} ${small && styles.small}`}
           />
         )}
+        {leaf ? (
+          !toggled ? (
+            <FiChevronDown
+              className={`${`${styles.icon} ${
+                editMode === rowId && styles.edit
+              }`} ${small && styles.small}`}
+            />
+          ) : (
+            <FiChevronUp
+              className={`${`${styles.icon} ${
+                editMode === rowId && styles.edit
+              }`} ${small && styles.small}`}
+            />
+          )
+        ) : null}
       </div>
     </td>
   );
